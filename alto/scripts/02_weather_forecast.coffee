@@ -20,7 +20,7 @@ module.exports = (robot) ->
     request = msg.http(FORECAST_API).get()
     request (err, res, body_string) ->
       if err
-        msg.send "すみません、エラーです"
+        msg.send "なんかエラーでたよ"
         return
 
       body = JSON.parse body_string
@@ -39,14 +39,14 @@ module.exports = (robot) ->
 
 start_phrases = [
   "はい"
-  "はい…"
-  "了解です"
-  "かしこまりました"
+  "うん"
+  "了解"
+  "かしこまり"
   "仰せのままに"
-  "天気ですか？"
-  "天気ですね"
-  "お待ちを…"
-  "少々お待ちを…"
-  "今調べます…"
+  "天気？"
+  "天気ね"
+  "待ってね"
+  "お待ちを"
+  "調べます"
   "ええとですね"
 ]

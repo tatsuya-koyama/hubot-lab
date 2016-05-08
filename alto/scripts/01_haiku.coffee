@@ -6,52 +6,18 @@ module.exports = (robot) ->
   robot.respond /.*一句/i, (msg) ->
     msg.finish()
 
-    msg.send msg.random pre
-
     setTimeout () ->
       msg.send "`" + (msg.random kami) + "`"
-    , 1.0 * 1000
+    , 0.0 * 1000
 
     setTimeout () ->
       msg.send "`" + (msg.random naka) + "`"
-    , 2.0 * 1000
+    , 1.0 * 1000
 
     setTimeout () ->
       msg.send "`" + (msg.random shimo) + "`"
-    , 3.0 * 1000
+    , 2.0 * 1000
 
-    setTimeout () ->
-      msg.send msg.random post
-    , 5.0 * 1000
-
-
-pre = [
-  "はい"
-  "はい…"
-  "やります"
-  "やってみます"
-  "詠みます"
-  "緊張しますね"
-  "行きますよ"
-]
-
-post = [
-  "どうでしょう"
-  "どうですかね"
-  "どうですか"
-  "いかがでしょうか"
-  "いかがでしょう"
-  "微妙ですかね"
-  "微妙ですね"
-  "いまいちですね"
-  "はい"
-  "今日は調子が悪いんですよ"
-  "まあまあですかね"
-  "こんなものですかね"
-  "帰ります"
-  "悪くないんじゃないですか？"
-  "これは結構気に入っています"
-]
 
 kami = [
   "進捗は"
