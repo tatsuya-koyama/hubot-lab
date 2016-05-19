@@ -6,6 +6,7 @@
   "description": "First prototype robot",
   "dependencies": {
     "cron": "^1.1.0",
+    "eastasianwidth": "^0.1.1",
     "handlebars": "^4.0.5",
     "hubot": "^2.11.0",
     "hubot-diagnostics": "0.0.1",
