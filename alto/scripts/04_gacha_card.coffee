@@ -16,7 +16,7 @@ module.exports = (robot) ->
   robot.respond /.*ガチャ|.*gacha|.*ドロー|.*draw/i, (msg) ->
     msg.finish()
 
-    params = create_card_params()
+    params = create_card_params(msg)
     premium = if Math.random() < 0.08 then " （プレミアム）" else ""
 
     insert_random_image(msg)
@@ -48,8 +48,8 @@ module.exports = (robot) ->
   #   toughness   : タフネス
   #   description : 説明文
   # }
-  create_card_params = ->
-    rarity      = lot_rarity()
+  create_card_params = (msg) ->
+    rarity      = lot_rarity(msg)
     cost        = lot_cost()
     name        = make_name(rarity)
     type_desc   = make_type_desc(rarity)
@@ -90,8 +90,23 @@ module.exports = (robot) ->
     return "#{title}#{breed}・#{job}・#{character}"
 
 
-  lot_rarity = ->
+  lot_rarity = (msg) ->
     rand = Math.random()
+    # レジェンダリー確定ガチャ
+    if msg.message.text.match("レジェン")
+      return 5
+
+    # エピック以上確定ガチャ
+    if msg.message.text.match("エピック")
+      return 4 if rand < 0.80  # 80%
+      return 5                 # 20%
+
+    # レア以上確定ガチャ
+    if msg.message.text.match("レア")
+      return 3 if rand < 0.60  # 60%
+      return 4 if rand < 0.90  # 30%
+      return 5                 # 10%
+
     return 1 if rand < 0.30  # 30%
     return 2 if rand < 0.58  # 28%
     return 3 if rand < 0.83  # 25%
